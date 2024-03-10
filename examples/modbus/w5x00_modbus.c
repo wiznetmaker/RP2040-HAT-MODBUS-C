@@ -144,10 +144,9 @@ int main()
                 DHCP_stop();
                 while (1);
             }
-            wizchip_delay_ms(1000); // wait for 1 second
         }
 
-        if (dhcp_retval == DHCP_IP_LEASED)
+        if (dhcp_retval == DHCP_IP_LEASED || g_net_info.dhcp == NETINFO_STATIC)
         {
             state = getSn_SR(SOCKET_MODBUS);
             switch(state)

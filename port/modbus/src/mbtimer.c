@@ -21,7 +21,6 @@ void vMBPortTimersCallback(struct repeating_timer *t)
 
 void xMBPortTimersInit( uint32_t usTim1Timerout50us)
 {
-	printf("[Hoon] usTim1Timerout50us = %d\r\n", usTim1Timerout50us);
     mb_timeout = usTim1Timerout50us;
 }
 
@@ -31,13 +30,11 @@ void vMBPortTimersEnable( void )
 
     mb_downcounter = mb_timeout;
 	cancel_repeating_timer(&g_mb_timer);
-    //add_repeating_timer_us(-20000 / hz, vMBPortTimersCallback, NULL, &g_mb_timer);
 	add_repeating_timer_us(50, vMBPortTimersCallback, NULL, &g_mb_timer);
 }
 
 void vMBPortTimersDisable( void )
 {
-	printf("[Hoon] %s\r\n", __func__);
     cancel_repeating_timer(&g_mb_timer);
 }
 
